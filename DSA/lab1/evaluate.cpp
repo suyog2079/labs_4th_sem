@@ -1,48 +1,44 @@
-#include <algorithm>
-#include <cmath>
-#include <codecvt>
 #include <iostream>
 #include <stack>
 #include <string>
-#include <vector>
 
 int main() {
   std::string expression;
-  int b, c, d;
   std::cout << "enter expression: ";
   std::cin >> expression;
-  std::stack<int> a;
+  std::stack<int> stk;
 
   while (!expression.empty()) {
     char first = expression.front();
-    if (first != '+' && first != '-' && first != '*' && first != '/') {
-      a.push(first - '0');
+    expression.erase(0, 1);
+
+    if (isalnum(first)) {
+      int number = first - '0';
+      stk.push(number);
     } else {
-      b = a.top();
-      a.pop();
-      c = a.top();
+      int a = stk.top();
+      stk.pop();
+      int b = stk.top();
+      stk.pop();
       switch (first) {
-
       case '+':
-        d = b + c;
+        stk.push(a + b);
         break;
-
       case '-':
-        d = b - c;
+        stk.push(a - b);
         break;
-
       case '*':
-        d = b * c;
+        stk.push(a * b);
         break;
-
       case '/':
-        d = b / c;
+        stk.push(a / b);
+        break;
+      default:
         break;
       }
     }
-    a.push(d);
-    expression.erase(0, 1);
   }
-  std::cout << "the result is: " << a.top() << "\n";
+  int result = stk.top();
+  std::cout << "result: " << result << "\n";
   return 0;
 }
