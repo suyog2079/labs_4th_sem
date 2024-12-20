@@ -17,7 +17,7 @@ int main() {
 		k = (k1+2.0f*(k2+k3)+k4)/6.0f; 
     y += k;
     x += h;
-    std::cout << x << "\t" << y << "\n";
+    std::cout << x << "," << y << "\n";
   } while (x <= b);
 	return 0;
 }

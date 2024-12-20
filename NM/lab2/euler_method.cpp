@@ -2,7 +2,7 @@
 #include <iostream>
 #define h  0.1f
 
-float func(float x, float y) { return x*cos(x); }
+float func(float x, float y) { return x+y; }
 
 int main() {
   float a = 0.0f, b = 5.0f;
@@ -11,7 +11,7 @@ int main() {
   do {
     y += func(x, y)*h;
     x += h;
-    std::cout << x << "\t" << y << "\n";
+    std::cout << x << "," << y << "\n";
   } while (x <= b);
 	return 0;
 }
